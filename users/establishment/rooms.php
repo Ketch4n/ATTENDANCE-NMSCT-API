@@ -7,28 +7,29 @@ if ($con->connect_error) {
 }
 
 // User ID or username (replace with the actual value)
-$userId = $_POST['id'];
+$estabId = $_POST['establishment_id'];
 
-// SQL query to fetch data from the 'establishment' table for a single user
-$sql = "SELECT admin.*, 
-        COALESCE(establishment.id, 'null') AS id,
-        COALESCE(establishment.code, 'null') AS code,
-        COALESCE(establishment.establishment_name, 'null') AS establishment_name,
-        COALESCE(establishment.creator_id, 'null') AS creator_id,
-        COALESCE(establishment.location, 'null') AS location,
-        COALESCE(establishment.status, 'null') AS status
-       
-        FROM establishment
-        LEFT JOIN admin ON establishment.creator_id = admin.id AND establishment.status = 'Active'
-        WHERE admin.id = $userId";
+// SQL query to fetch data for a single user with left joins and filtering for null values
+$sql = "SELECT room.*, establishment.*, users.*,
+  COALESCE(admin.name,admin.name) AS creator_name,
+  COALESCE(admin.email,admin.email) AS creator_email
+
+        FROM room
+        INNER JOIN establishment ON room.establishment_id = establishment.id
+        INNER JOIN admin ON admin.id = establishment.creator_id
+        LEFT JOIN users ON room.student_id = users.id
+        WHERE room.establishment_id = $estabId";
+
 
 
 // Execute the query
 $result = $con->query($sql);
 
-// Convert the result set to JSON
+// Initialize an empty array to store the results
 $response = array();
+
 if ($result->num_rows > 0) {
+    // Loop through the result set and fetch all rows
     while ($row = $result->fetch_assoc()) {
         $response[] = $row;
     }
@@ -37,7 +38,6 @@ if ($result->num_rows > 0) {
 // Close the connection
 $con->close();
 
-// Return the JSON response
+// Return the JSON response without brackets
 header('Content-Type: application/json');
 echo json_encode($response);
-?>

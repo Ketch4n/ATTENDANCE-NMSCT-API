@@ -7,7 +7,7 @@ if ($con->connect_error) {
 }
 
 // User ID or username (replace with the actual value)
-$estabId = 5;
+$estabId = $_POST['establishment_id'];
 
 // SQL query to fetch data for a single user with left joins and filtering for null values
 $sql = "SELECT room.*, establishment.*, users.*,

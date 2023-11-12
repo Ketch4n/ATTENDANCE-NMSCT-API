@@ -12,7 +12,8 @@ $secId = $_POST['section_id'];
 // SQL query to fetch data for a single user with left joins and filtering for null values
 $sql = "SELECT class.*, section.*, users.*,
   COALESCE(admin.name,admin.name) AS admin_name,
-  COALESCE(admin.email,admin.email) AS admin_email
+  COALESCE(admin.email,admin.email) AS admin_email,
+  COALESCE(users.name, 'null') AS name
 
         FROM class
         INNER JOIN section ON class.section_id = section.id
