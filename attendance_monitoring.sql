@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2023 at 09:30 AM
+-- Generation Time: Nov 14, 2023 at 09:27 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,7 +31,7 @@ CREATE TABLE `accomplishment` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `section_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
+  `comment` varchar(255) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -69,6 +69,13 @@ CREATE TABLE `class` (
   `section_id` int(255) NOT NULL,
   `student_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`id`, `section_id`, `student_id`) VALUES
+(20, 9, 45);
 
 -- --------------------------------------------------------
 
@@ -240,7 +247,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accomplishment`
 --
 ALTER TABLE `accomplishment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -252,7 +259,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `dtr`

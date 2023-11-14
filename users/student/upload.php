@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email = $data['email'];
     $section = $data['section'];
-    $comment = $data['comment'];
+    $comment = nl2br($data['comment']);
     $date = $data['date'];
 
     // Directly insert into the reference table
@@ -22,15 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Data inserted successfully
         $response = array('status' => 'Success', 'message' => "Accomplishment added successfully");
         echo json_encode($response);
+        exit(); // Add this line to exit the script after echoing the response
     } else {
         // Error inserting data
         $response = array('status' => 'error', 'message' => "Error adding accomplishment");
         echo json_encode($response);
+        exit(); // Add this line to exit the script after echoing the response
     }
 } else {
     // Invalid request method
     $response = array('status' => 'error', 'message' => 'Invalid request method');
     echo json_encode($response);
+    exit(); // Add this line to exit the script after echoing the response
 }
 
 header('Content-Type: application/json');
