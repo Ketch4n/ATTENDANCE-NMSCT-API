@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2023 at 09:27 AM
+-- Generation Time: Nov 21, 2023 at 04:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -50,14 +50,6 @@ CREATE TABLE `admin` (
   `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id`, `email`, `password`, `name`, `user_id`, `role`) VALUES
-(40, 'admin@gmail.com', '$2y$10$IrCl7lOiuLtO29tF0b0zVuguirvGuL.d8Wm8R0F0AiMntVXRdy6oO', 'Mr. Ketchan', '152966493', 'Admin'),
-(41, 'estab@gmail.com', '$2y$10$S5d8iiye5NYJ917hDrmZRebWAO27oAey5xz7v1G.1U1N575i9HGfK', 'Mr. Night Tech', '962067827', 'Establishment');
-
 -- --------------------------------------------------------
 
 --
@@ -69,13 +61,6 @@ CREATE TABLE `class` (
   `section_id` int(255) NOT NULL,
   `student_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `class`
---
-
-INSERT INTO `class` (`id`, `section_id`, `student_id`) VALUES
-(20, 9, 45);
 
 -- --------------------------------------------------------
 
@@ -102,13 +87,6 @@ CREATE TABLE `dtr` (
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `dtr`
---
-
-INSERT INTO `dtr` (`id`, `student_id`, `estab_id`, `time_in_am`, `in_am`, `loc_in_am`, `time_out_am`, `out_am`, `loc_out_am`, `time_in_pm`, `in_pm`, `loc_in_pm`, `time_out_pm`, `out_pm`, `loc_out_pm`, `date`) VALUES
-(41, 45, 5, '03:16:00', 'PM', '', '00:00:00', '--', '', '00:00:00', '--', '', '00:00:00', '--', '', '2023-11-10');
-
 -- --------------------------------------------------------
 
 --
@@ -123,13 +101,6 @@ CREATE TABLE `establishment` (
   `creator_id` int(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `establishment`
---
-
-INSERT INTO `establishment` (`id`, `code`, `establishment_name`, `location`, `creator_id`, `status`) VALUES
-(5, 'dfd1yeXO', 'NITEX', '8.4934431123.7858202', 41, 'Active');
 
 -- --------------------------------------------------------
 
@@ -157,14 +128,6 @@ CREATE TABLE `section` (
   `status` varchar(255) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `section`
---
-
-INSERT INTO `section` (`id`, `code`, `section_name`, `admin_id`, `status`) VALUES
-(9, 'W430WhWk', 'EAGLE - 4A', 40, 'Active'),
-(11, 'RFJ3SiSg', 'RUBY - 2A', 40, 'Active');
-
 -- --------------------------------------------------------
 
 --
@@ -179,13 +142,6 @@ CREATE TABLE `users` (
   `user_id` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `password`, `name`, `user_id`, `role`) VALUES
-(45, 'mangao.christian.04@gmail.com', '$2y$10$KgPf3VhuYR9ke74GjAKgJOCmh5f/e5wgpn41v/gUpyHKXUEhpPYPy', 'Ketchan', '294313492', 'Student');
 
 --
 -- Indexes for dumped tables
@@ -247,7 +203,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accomplishment`
 --
 ALTER TABLE `accomplishment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -265,7 +221,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `establishment`
@@ -277,7 +233,7 @@ ALTER TABLE `establishment`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `section`
