@@ -7,12 +7,11 @@ if ($con->connect_error) {
 }
 
 // User ID or username (replace with the actual value)
-$email = $_POST['email']; // Sanitize user input
-$date = $_POST['date'];   // Sanitize user input
+$uid = $_POST['student_id']; // Sanitize user input
 $sectId = $_POST['section_id'];
 
 // SQL query to fetch data for a single user
-$sql = "SELECT * FROM accomplishment WHERE email = '$email' AND section_id = '$sectId' AND date = '$date'   ORDER BY time DESC";
+$sql = "SELECT * FROM absent WHERE student_id = '$uid' AND section_id = '$sectId'";
 
 // Execute the query
 $result = $con->query($sql);

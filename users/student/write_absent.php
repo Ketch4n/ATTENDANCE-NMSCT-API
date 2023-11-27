@@ -8,25 +8,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the values from the request body
     $data = json_decode(file_get_contents('php://input'), true);
 
-    $email = $data['email'];
-    $section = $data['section'];
-    $comment = nl2br($data['comment']);
+    $uid = $data['student_id'];
+    $sectId = $data['section_id'];
+    $reason = nl2br($data['reason']);
     $date = $data['date'];
     $time = $data['time'];
 
     // Directly insert into the reference table
-    $sqlInsert = "INSERT INTO accomplishment (email, section_id, comment, date,time) VALUES (?, ?, ?, ?,?)";
+    $sqlInsert = "INSERT INTO absent (student_id, section_id, date, time,reason) VALUES (?, ?, ?, ?,?)";
     $stmtInsert = $con->prepare($sqlInsert);
-    $stmtInsert->bind_param("sssss", $email, $section, $comment, $date, $time);
+    $stmtInsert->bind_param("sssss", $uid, $sectId, $date, $time, $reason);
 
     if ($stmtInsert->execute()) {
         // Data inserted successfully
-        $response = array('status' => 'Success', 'message' => "Accomplishment added successfully");
+        $response = array('status' => 'Success', 'message' => "Submitted Successfully");
         echo json_encode($response);
         exit(); // Add this line to exit the script after echoing the response
     } else {
         // Error inserting data
-        $response = array('status' => 'error', 'message' => "Error adding accomplishment");
+        $response = array('status' => 'error', 'message' => "Error filing absent");
         echo json_encode($response);
         exit(); // Add this line to exit the script after echoing the response
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 04:15 PM
+-- Generation Time: Nov 27, 2023 at 01:17 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `absent`
+--
+
+CREATE TABLE `absent` (
+  `id` int(11) NOT NULL,
+  `student_id` int(255) NOT NULL,
+  `section_id` int(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'Pending',
+  `reason` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `accomplishment`
 --
 
@@ -32,7 +48,8 @@ CREATE TABLE `accomplishment` (
   `email` varchar(255) NOT NULL,
   `section_id` int(11) NOT NULL,
   `comment` varchar(255) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -50,6 +67,14 @@ CREATE TABLE `admin` (
   `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `password`, `name`, `user_id`, `role`) VALUES
+(42, 'admin@gmail.com', '$2y$10$fGwiQUb4lG3P.MEJXEPujOeCMg/XZUypLaoiFlLoIf7ERjW3TX5Ne', 'Dean', '680141805', 'Admin'),
+(43, 'estab@gmail.com', '$2y$10$KVDI7Vn1ws2q57jJ1I7g3eJ/7H0x8S7rUtTlF2SU18qjpWwFfw1hq', 'Tech', '339936034', 'Establishment');
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +86,13 @@ CREATE TABLE `class` (
   `section_id` int(255) NOT NULL,
   `student_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`id`, `section_id`, `student_id`) VALUES
+(21, 15, 47);
 
 -- --------------------------------------------------------
 
@@ -102,6 +134,14 @@ CREATE TABLE `establishment` (
   `status` varchar(255) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `establishment`
+--
+
+INSERT INTO `establishment` (`id`, `code`, `establishment_name`, `location`, `creator_id`, `status`) VALUES
+(7, 'pQBUCwro', 'NITEX', 'Mobod, Oroquieta City, Misamis Occidental', 43, 'Active'),
+(8, '1I6l9hsY', 'TECHY', 'Mobod, Oroquieta City, Misamis Occidental', 43, 'Active');
+
 -- --------------------------------------------------------
 
 --
@@ -113,6 +153,13 @@ CREATE TABLE `room` (
   `establishment_id` int(255) NOT NULL,
   `student_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id`, `establishment_id`, `student_id`) VALUES
+(18, 7, 47);
 
 -- --------------------------------------------------------
 
@@ -127,6 +174,14 @@ CREATE TABLE `section` (
   `admin_id` int(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`id`, `code`, `section_name`, `admin_id`, `status`) VALUES
+(14, 'SXy1SIcI', 'NITEX', 42, 'Active'),
+(15, 'Pxkw9XnW', 'TECH', 42, 'Active');
 
 -- --------------------------------------------------------
 
@@ -144,8 +199,21 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `name`, `user_id`, `role`) VALUES
+(47, 'mangao.christian.04@gmail.com', '$2y$10$UL9kbWNGCUUgTFisZ8/W1.XveHUYWTCmhAvGaO67RBhWKmgR96myi', 'Ketchan', '127559899', 'Student');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `absent`
+--
+ALTER TABLE `absent`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `accomplishment`
@@ -200,52 +268,58 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `absent`
+--
+ALTER TABLE `absent`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `accomplishment`
 --
 ALTER TABLE `accomplishment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `establishment`
 --
 ALTER TABLE `establishment`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
