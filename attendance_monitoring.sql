@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2023 at 01:17 AM
+-- Generation Time: Nov 28, 2023 at 03:08 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -87,13 +87,6 @@ CREATE TABLE `class` (
   `student_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `class`
---
-
-INSERT INTO `class` (`id`, `section_id`, `student_id`) VALUES
-(21, 15, 47);
-
 -- --------------------------------------------------------
 
 --
@@ -134,14 +127,6 @@ CREATE TABLE `establishment` (
   `status` varchar(255) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `establishment`
---
-
-INSERT INTO `establishment` (`id`, `code`, `establishment_name`, `location`, `creator_id`, `status`) VALUES
-(7, 'pQBUCwro', 'NITEX', 'Mobod, Oroquieta City, Misamis Occidental', 43, 'Active'),
-(8, '1I6l9hsY', 'TECHY', 'Mobod, Oroquieta City, Misamis Occidental', 43, 'Active');
-
 -- --------------------------------------------------------
 
 --
@@ -153,13 +138,6 @@ CREATE TABLE `room` (
   `establishment_id` int(255) NOT NULL,
   `student_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `room`
---
-
-INSERT INTO `room` (`id`, `establishment_id`, `student_id`) VALUES
-(18, 7, 47);
 
 -- --------------------------------------------------------
 
@@ -174,14 +152,6 @@ CREATE TABLE `section` (
   `admin_id` int(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `section`
---
-
-INSERT INTO `section` (`id`, `code`, `section_name`, `admin_id`, `status`) VALUES
-(14, 'SXy1SIcI', 'NITEX', 42, 'Active'),
-(15, 'Pxkw9XnW', 'TECH', 42, 'Active');
 
 -- --------------------------------------------------------
 
@@ -271,13 +241,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absent`
 --
 ALTER TABLE `absent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `accomplishment`
 --
 ALTER TABLE `accomplishment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -295,7 +265,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `establishment`

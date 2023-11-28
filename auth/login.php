@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'role' => $row['role'],
                 'name' => $row['name'],
                 'email' => $row['email'],
+
                 'message' => $row['name'],
             ];
             echo json_encode($response);
