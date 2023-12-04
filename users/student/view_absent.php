@@ -1,6 +1,6 @@
 <?php
 include '../../db/database.php';
-
+header('Content-Type: application/json');
 // Check the connection
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
@@ -32,5 +32,5 @@ if ($result->num_rows > 0) {
 }
 
 // Return the JSON response
-header('Content-Type: application/json');
+
 echo json_encode($response);
