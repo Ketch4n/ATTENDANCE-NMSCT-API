@@ -35,3 +35,4 @@ if ($result->num_rows > 0) {
 // Return the JSON response
 header('Content-Type: application/json');
 echo json_encode($response);
+?>

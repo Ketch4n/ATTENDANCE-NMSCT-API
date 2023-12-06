@@ -16,3 +16,4 @@ $HostPass = "";
 // $HostPass = "1234@NMscST";
 
 $con = mysqli_connect($HostName, $HostUser, $HostPass, $DatabaseName);
+?>

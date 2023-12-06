@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 09:19 AM
+-- Generation Time: Dec 06, 2023 at 03:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -127,6 +127,14 @@ CREATE TABLE `establishment` (
   `status` varchar(255) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `establishment`
+--
+
+INSERT INTO `establishment` (`id`, `code`, `establishment_name`, `location`, `creator_id`, `status`) VALUES
+(10, 'r3Bs1a', 'NITEX', 'Mobod, Oroquieta City, Misamis Occidental', 43, 'Active'),
+(11, 'Ttgmkp', 'Test', 'Mobod, Oroquieta City, Misamis Occidental', 43, 'Active');
+
 -- --------------------------------------------------------
 
 --
@@ -152,6 +160,13 @@ CREATE TABLE `section` (
   `admin_id` int(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`id`, `code`, `section_name`, `admin_id`, `status`) VALUES
+(17, 'wXnfOT', 'NIXEN', 42, 'Active');
 
 -- --------------------------------------------------------
 
@@ -241,7 +256,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absent`
 --
 ALTER TABLE `absent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `accomplishment`
@@ -259,31 +274,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `establishment`
 --
 ALTER TABLE `establishment`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`

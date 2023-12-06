@@ -8,14 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the values from the request body
     $data = json_decode(file_get_contents('php://input'), true);
 
-    $email = $data['email'];
-    $section = $data['section'];
-    $comment = nl2br($data['comment']);
-    $date = $data['date'];
-    $time = $data['time'];
+    // Sanitize and validate input
+    $email = $con->real_escape_string($data['email']);
+    $section = $con->real_escape_string($data['section']);
+    $comment = nl2br($con->real_escape_string($data['comment']));
+    $date = $con->real_escape_string($data['date']);
+    $time = $con->real_escape_string($data['time']);
 
-    // Directly insert into the reference table
-    $sqlInsert = "INSERT INTO accomplishment (email, section_id, comment, date,time) VALUES (?, ?, ?, ?,?)";
+    // Directly insert into the reference table using prepared statements
+    $sqlInsert = "INSERT INTO accomplishment (email, section_id, comment, date, time) VALUES (?, ?, ?, ?, ?)";
     $stmtInsert = $con->prepare($sqlInsert);
     $stmtInsert->bind_param("sssss", $email, $section, $comment, $date, $time);
 
@@ -37,7 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit(); // Add this line to exit the script after echoing the response
 }
 
+// Set response headers
 header('Content-Type: application/json');
 
 // Close the database connection
 $con->close();
+?>

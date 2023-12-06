@@ -1,6 +1,12 @@
 <?php
 include '../../db/database.php';
 
+header('Content-Type: application/json'); // Set response content type to JSON
+
+if ($con->connect_error) {
+    die(json_encode(['success' => false, 'message' => 'Connection failed: ' . $con->connect_error]));
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $data = json_decode(file_get_contents('php://input'), true);
 
 $student_id = $data['student_id'];
@@ -49,4 +55,11 @@ if ($rows > 0) {
         $response = array('status' => 'error', 'message' => $stmtInsert->error);
         echo json_encode($response);
     }
+}}
+else {
+    // Invalid request method
+    $response = array('status' => 'error', 'message' => 'Invalid request method');
+    echo json_encode($response);
 }
+$con->close();
+?>

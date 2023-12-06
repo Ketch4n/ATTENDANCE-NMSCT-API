@@ -1,28 +1,31 @@
 <?php
 include '../../db/database.php';
+
 // Check the connection
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 }
 
 // User ID or username (replace with the actual value)
-$uid = $_POST['id'];
-$date = $_POST['date'];
+$uid = $con->real_escape_string($_POST['id']);
+$date = $con->real_escape_string($_POST['date']);
 
-// SQL query to fetch data for a single user
-$sql = "SELECT * FROM dtr WHERE student_id = $uid AND date = '$date'";
+// SQL query to fetch data for a single user using prepared statements
+$sql = "SELECT * FROM dtr WHERE student_id = ? AND date = ?";
+$stmt = $con->prepare($sql);
+$stmt->bind_param("ss", $uid, $date);
+$stmt->execute();
+$result = $stmt->get_result();
 
-// Execute the query
-$result = $con->query($sql);
-
-// Convert the result set to JSON
+// Initialize an empty array to store the results
 $response = array();
 
+// Check if there are rows in the result set
 if ($result->num_rows > 0) {
     // Fetch the row
     $response = $result->fetch_assoc();
 
-    // Create an array representing a single row
+    // Optionally, you can create an array representing a single row
     // $response = array(
     //     'id' => $row['id'],
     //     'student_id' => $row['student_id'],
@@ -35,9 +38,11 @@ if ($result->num_rows > 0) {
     // );
 }
 
-// Close the connectionx
+// Close the connection
+$stmt->close();
 $con->close();
 
 // Return the JSON response
 header('Content-Type: application/json');
 echo json_encode($response);
+?>

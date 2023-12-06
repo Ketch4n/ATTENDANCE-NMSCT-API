@@ -38,3 +38,4 @@ header('Content-Type: application/json');
 
 // Close the database connection
 $con->close();
+?>

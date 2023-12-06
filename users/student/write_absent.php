@@ -5,7 +5,7 @@ include '../../db/database.php';
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 }
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Get data from Flutter app
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -33,7 +33,12 @@ $data = json_decode(file_get_contents('php://input'), true);
         exit(); // Add this line to exit the script after echoing the response
     }
 
-
+}
+else {
+    // Invalid request method
+    $response = array('status' => 'error', 'message' => 'Invalid request method');
+    echo json_encode($response);
+}
 header('Content-Type: application/json');
 
 // Close the database connection
