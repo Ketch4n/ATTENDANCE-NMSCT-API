@@ -42,4 +42,3 @@ $con->close();
 // Return the JSON response without brackets
 header('Content-Type: application/json');
 echo json_encode($response);
-?>
