@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 12:05 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Host: localhost:3306
+-- Generation Time: Dec 07, 2023 at 05:46 PM
+-- Server version: 10.5.20-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `attendance_monitoring`
+-- Database: `id21551497_attendance_nmscst`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +32,6 @@ CREATE TABLE `absent` (
   `student_id` int(255) NOT NULL,
   `section_id` int(255) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Pending',
   `reason` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -106,16 +105,12 @@ CREATE TABLE `dtr` (
   `estab_id` int(255) NOT NULL,
   `time_in_am` time NOT NULL,
   `in_am` varchar(2) NOT NULL,
-  `loc_in_am` varchar(255) NOT NULL,
   `time_out_am` time NOT NULL,
   `out_am` varchar(2) NOT NULL,
-  `loc_out_am` varchar(255) NOT NULL,
   `time_in_pm` time NOT NULL,
   `in_pm` varchar(2) NOT NULL,
-  `loc_in_pm` varchar(255) NOT NULL,
   `time_out_pm` time NOT NULL,
   `out_pm` varchar(2) NOT NULL,
-  `loc_out_pm` varchar(255) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -269,13 +264,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absent`
 --
 ALTER TABLE `absent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `accomplishment`
 --
 ALTER TABLE `accomplishment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -293,7 +288,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `dtr`
 --
 ALTER TABLE `dtr`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `establishment`

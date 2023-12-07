@@ -2,22 +2,27 @@
 include '../../db/database.php';
 
 // Assuming you have a database connection established
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+}
 
+// Get data from Flutter app
+$data = json_decode(file_get_contents('php://input'), true);
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the values from the request body
-    $data = json_decode(file_get_contents('php://input'), true);
+ 
 
     $uid = $data['student_id'];
     $sectId = $data['section_id'];
     $reason = nl2br($data['reason']);
     $date = $data['date'];
-    $time = $data['time'];
+
 
     // Directly insert into the reference table
-    $sqlInsert = "INSERT INTO absent (student_id, section_id, date, time,reason) VALUES (?, ?, ?, ?,?)";
+    $sqlInsert = "INSERT INTO absent (student_id, section_id, date,reason) VALUES (?, ?, ?,?)";
     $stmtInsert = $con->prepare($sqlInsert);
-    $stmtInsert->bind_param("sssss", $uid, $sectId, $date, $time, $reason);
+    $stmtInsert->bind_param("ssss", $uid, $sectId, $date, $reason);
 
     if ($stmtInsert->execute()) {
         // Data inserted successfully
@@ -41,3 +46,4 @@ header('Content-Type: application/json');
 
 // Close the database connection
 $con->close();
+?>
