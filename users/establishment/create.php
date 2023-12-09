@@ -12,12 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sname = $data['establishment_name'];
     $aid = $data['creator_id'];
     $loc = $data['location'];
+    $longitude = $data['longitude'];
+    $latitude = $data['latitude'];
 
 
     // Directly insert into the reference table
-    $sqlInsert = "INSERT INTO establishment (establishment_name, creator_id, code, location) VALUES (?, ?, ?,?)";
+    $sqlInsert = "INSERT INTO establishment (establishment_name, creator_id, code, location, longitude,latitude) VALUES (?, ?, ?,?,?,?)";
     $stmtInsert = $con->prepare($sqlInsert);
-    $stmtInsert->bind_param("ssss", $sname, $aid,  $code, $loc);
+    $stmtInsert->bind_param("ssssss", $sname, $aid,  $code, $loc,$longitude,$latitude);
 
     if ($stmtInsert->execute()) {
         // Data inserted successfully

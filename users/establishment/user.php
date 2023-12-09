@@ -17,6 +17,8 @@ $sql = "SELECT admin.*,
         COALESCE(establishment.id, 'null') AS establishment_id,
         COALESCE(establishment.establishment_name, 'null') AS establishment_name,
         COALESCE(establishment.location, 'null') AS location,
+        COALESCE(establishment.longitude, 'null') AS longitude,
+        COALESCE(establishment.latitude, 'null') AS latitude,
         COALESCE(establishment.creator_id, 'null') AS creator_id
      
         FROM admin
