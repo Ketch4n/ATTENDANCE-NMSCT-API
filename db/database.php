@@ -1,7 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin", "*");
-header("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
-header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+include 'header.php';
 
 // $HostName = "localhost";
 // $DatabaseName = "attendance_monitoring";
